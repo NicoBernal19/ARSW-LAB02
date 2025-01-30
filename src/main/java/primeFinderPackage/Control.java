@@ -1,5 +1,7 @@
 package primeFinderPackage;
 
+import java.util.Scanner;
+
 /**
  * @author Juan Pablo Daza Pereira
  * @author Nicolas Bernal Fuquene
@@ -34,7 +36,27 @@ public class Control extends Thread {
         for(int i = 0;i < NTHREADS;i++) {
             pft[i].start();
         }
+        while (true){
+            try {
+                Thread.sleep(TMILISECONDS);
+                synchronized (this){
+                    paused = true;
+                    int totalPrimes = 0;
 
+                    for (PrimeFinderThread thread : pft){
+                        totalPrimes += thread.getPrimes().size();
+                    }
+                    System.out.println("Número de primos impresos hasta el momento: " + totalPrimes);
+                    System.out.println("Presione ENTER para continuar :) ");
+
+                    new Scanner(System.in).nextLine(); //Enter
+                    paused = false;
+                    notifyAll();
+                }
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     public synchronized void checkPaused() throws InterruptedException {
@@ -43,3 +65,9 @@ public class Control extends Thread {
         }
     }
 }
+
+
+
+
+
+
