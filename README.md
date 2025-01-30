@@ -3,7 +3,11 @@
 
 #### Laboratorio - Programación concurrente, condiciones de carrera, esquemas de sincronización, colecciones sincronizadas y concurrentes.
 
-Ejercicio inividual o en parejas.
+#### Realizado por:
+
+- Juan Pablo Daza Pereira
+
+- Nicolas Bernal Fuquene
 
 ### Part I
 
