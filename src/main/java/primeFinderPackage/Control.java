@@ -46,7 +46,7 @@ public class Control extends Thread {
                     for (PrimeFinderThread thread : pft){
                         totalPrimes += thread.getPrimes().size();
                     }
-                    System.out.println("Número de primos impresos hasta el momento: " + totalPrimes);
+                    System.out.println("\nNúmero de primos impresos hasta el momento: " + totalPrimes);
                     System.out.println("Presione ENTER para continuar :) ");
 
                     new Scanner(System.in).nextLine(); //Enter
