@@ -104,11 +104,13 @@ public class SnakeApp {
                 }
             }
         });
+
+        frame.setVisible(true);
     }
 
     public static void main(String[] args) {
         app = new SnakeApp();
-        app.init();
+        //app.init();
     }
 
     private void init() {
@@ -119,25 +121,23 @@ public class SnakeApp {
             thread[i].start();
         }
 
-        frame.setVisible(true);
-
-
-        while (true) {
-            int x = 0;
-            for (int i = 0; i != MAX_THREADS; i++) {
-                if (snakes[i].isSnakeEnd() == true) {
-                    x++;
+        new Thread(() -> {
+            while (true) {
+                int x = 0;
+                for (int i = 0; i != MAX_THREADS; i++) {
+                    if (snakes[i].isSnakeEnd() == true) {
+                        x++;
+                    }
+                }
+                if (x == MAX_THREADS) {
+                    break;
                 }
             }
-            if (x == MAX_THREADS) {
-                break;
+            System.out.println("Thread (snake) status:");
+            for (int i = 0; i != MAX_THREADS; i++) {
+                System.out.println("[" + i + "] :" + thread[i].getState());
             }
-        }
-
-        System.out.println("Thread (snake) status:");
-        for (int i = 0; i != MAX_THREADS; i++) {
-            System.out.println("["+i+"] :"+thread[i].getState());
-        }
+        }).start();
     }
 
     private void pause() {
