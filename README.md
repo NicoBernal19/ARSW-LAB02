@@ -7,12 +7,7 @@
 
 - Juan Pablo Daza Pereira
 
-- Nicolas Bernal Fuquene
-
 ### Part I
-
-
-Parte I – Antes de terminar la clase.
 
 Control de hilos con [wait/notify.](http://howtodoinjava.com/core-java/multi-threading/how-to-work-with-wait-notify-and-notifyall-in-java/)
 
@@ -57,6 +52,45 @@ SnakeRace es una versión autónoma, multi-serpiente del famoso juego 'snake', b
 Ejercicio
 
 1. Analice el código para entender cómo hace uso de hilos para crear un comportamiento autónomo de las N serpientes.
+
+- Implementación de los hilos:
+
+![](img/img.png)
+
+----------------------------
+
+![](img/img_1.png)
+
+- Creación e inicialización de los hilos:
+
+![](img/img_2.png)
+
+    - Cada serpiente se crea con un ID único, posición inicial y dirección.
+
+    - Se asigna el tablero como observador de cada serpiente.
+
+    - Se crea e inicia un hilo independiente para cada serpiente.
+
+- Comportamiento autónomo:
+
+![](img/img_3.png)
+
+    - Cada serpiente ejecuta su lógica de movimiento independientemente.
+    - El Thread.sleep() controla la velocidad de movimiento.
+    - El turbo modifica la velocidad reduciendo el tiempo de espera.
+
+- Sincronización:
+
+![](img/img_4.png)
+
+    - Las celdas usan sincronización para evitar conflictos de acceso.
+
+- Finalización:
+
+![](img/img_5.png)
+
+    - El programa principal espera a que todas las serpientes terminen.
+    - Una serpiente termina cuando choca contra una barrera. 
 
 2. De acuerdo con lo anterior, y con la lógica del juego, identifique y escriba claramente (archivo RESPUESTAS.txt):
     - Posibles condiciones de carrera.

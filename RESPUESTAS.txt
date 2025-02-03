@@ -1,0 +1,29 @@
+RESPUESTAS PUNTO 2:
+
+1. Posibles condiciones de carrera:
+
+a) Cell (manejo de celdas):
+El método hasElements() no está sincronizado pero lee múltiples variables booleanas que pueden volverse
+concurrentes.
+
+b) Snake (manejo de comida):
+Acá múltiples serpientes podrían estar detectando la misma comida simultáneamente, y la reposición de la comida
+no está sincronizada.
+
+2. Uso inadecuado de colecciones:
+
+a) Snake:
+- Se usa un LinkedList sin sincronización para el cuerpo de la serpiente.
+- Existen múltiples operaciones que no tienen sincronización.
+
+b) Board:
+- Los arrays estáticos son compartidos entre hilos sin sincronización.
+- El acceso y modificación concurrente podría causar comportamiento indefinido.
+
+3. Uso innecesario de esperas activas:
+
+a) SnakeApp:
+- En el ciclo While(true) se usa una espera activa para verificar si todas las serpientes han terminado,
+se podría mejorar usando otro mecanismo.
+
+
