@@ -36,6 +36,8 @@ Tenga en cuenta:
 -   La instrucción notifyAll(), despierta todos los hilos que estan
     esperando por el objeto (hicieron wait()sobre el objeto).
 
+![](img/img_7.png)
+
 
 ### Parte II
 
