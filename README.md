@@ -105,5 +105,6 @@ Ejercicio
         - La peor serpiente: la que primero murió.
     
         Recuerde que la suspensión de las serpientes NO es instantánea, y que se debe garantizar que se muestre información consistente.
-    
+
+![](img/img_6.png)
 
