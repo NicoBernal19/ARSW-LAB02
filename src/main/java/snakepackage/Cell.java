@@ -10,6 +10,7 @@ package snakepackage;
  * 
  * @author Joao Andrade 28445
  * @author Diana Pereira 38074
+ * @author Juan Pablo Daza Pereira
  */
 public class Cell {
 
