@@ -26,4 +26,25 @@ a) SnakeApp:
 - En el ciclo While(true) se usa una espera activa para verificar si todas las serpientes han terminado,
 se podría mejorar usando otro mecanismo.
 
+RESPUESTAS PUNTO 3:
+
+1. Condiciones de carrera:
+a) Cell: se sincorinazan los métodos, gettesr y setters.
+b) Board: se sincroniza el manejo de la comida, actualizando el estado de las celdas y la referencia en el
+array de comida.
+
+2. Uso inadecuado de colecciones:
+a) Snake: se maneja mejor los LinkedList para hacer las operaciones de cada snake.
+b) Board: se sincroniza los drawElements.
+
+3. Uso innecesario de esperas activas:
+a) SnakeApp: se reemplaza la espera activa por un CountDownLatch.
+
+Lo realizado anteriormente se hace con el fin de:
+- Tener la sincronización mínima necesaria.
+- Proteger las regiones críticas (límites).
+- Manejar thread-safe para colecciones.
+- Eliminar las esperas activas.
+- usar mecanismos de sincronización adecuados.
+
 
