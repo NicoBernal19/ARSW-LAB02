@@ -183,35 +183,47 @@ public class Snake extends Observable implements Runnable {
 
     private synchronized Cell changeDirection(Cell newCell) {
         handleBoundaries();
-
-        switch (direction) {
-            case Direction.UP:
-                newCell = Board.gameboard[head.getX()][head.getY() - 1];
-                break;
-            case Direction.DOWN:
-                newCell = Board.gameboard[head.getX()][head.getY() + 1];
-                break;
-            case Direction.LEFT:
-                newCell = Board.gameboard[head.getX() - 1][head.getY()];
-                break;
-            case Direction.RIGHT:
-                newCell = Board.gameboard[head.getX() + 1][head.getY()];
-                break;
+        try {
+            switch (direction) {
+                case Direction.UP:
+                    if (head.getY() - 1 >= 0) {
+                        newCell = Board.gameboard[head.getX()][head.getY() - 1];
+                    }
+                    break;
+                case Direction.DOWN:
+                    if (head.getY() + 1 < GridSize.GRID_HEIGHT) {
+                        newCell = Board.gameboard[head.getX()][head.getY() + 1];
+                    }
+                    break;
+                case Direction.LEFT:
+                    if (head.getX() - 1 >= 0) {
+                        newCell = Board.gameboard[head.getX() - 1][head.getY()];
+                    }
+                    break;
+                case Direction.RIGHT:
+                    if (head.getX() + 1 < GridSize.GRID_WIDTH) {
+                        newCell = Board.gameboard[head.getX() + 1][head.getY()];
+                    }
+                    break;
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            newCell = head;
+            randomMovementAtBoundary();
         }
         return newCell;
     }
 
     private void handleBoundaries() {
-        while (direction == Direction.UP && head.getY() - 1 < 0) {
+        if (direction == Direction.UP && head.getY() <= 0) {
             randomMovementAtBoundary();
         }
-        while (direction == Direction.DOWN && head.getY() + 1 >= GridSize.GRID_HEIGHT) {
+        if (direction == Direction.DOWN && head.getY() >= GridSize.GRID_HEIGHT - 1) {
             randomMovementAtBoundary();
         }
-        while (direction == Direction.LEFT && head.getX() - 1 < 0) {
+        if (direction == Direction.LEFT && head.getX() <= 0) {
             randomMovementAtBoundary();
         }
-        while (direction == Direction.RIGHT && head.getX() + 1 >= GridSize.GRID_WIDTH) {
+        if (direction == Direction.RIGHT && head.getX() >= GridSize.GRID_WIDTH - 1) {
             randomMovementAtBoundary();
         }
     }
@@ -226,12 +238,23 @@ public class Snake extends Observable implements Runnable {
     }
 
     private boolean isValidDirection(int newDirection) {
-        return !(
-                (direction == Direction.LEFT && newDirection == Direction.RIGHT) ||
-                        (direction == Direction.RIGHT && newDirection == Direction.LEFT) ||
-                        (direction == Direction.UP && newDirection == Direction.DOWN) ||
-                        (direction == Direction.DOWN && newDirection == Direction.UP)
-        );
+        if (direction == Direction.LEFT && newDirection == Direction.RIGHT) return false;
+        if (direction == Direction.RIGHT && newDirection == Direction.LEFT) return false;
+        if (direction == Direction.UP && newDirection == Direction.DOWN) return false;
+        if (direction == Direction.DOWN && newDirection == Direction.UP) return false;
+
+        switch (newDirection) {
+            case Direction.UP:
+                return head.getY() > 0;
+            case Direction.DOWN:
+                return head.getY() < GridSize.GRID_HEIGHT - 1;
+            case Direction.LEFT:
+                return head.getX() > 0;
+            case Direction.RIGHT:
+                return head.getX() < GridSize.GRID_WIDTH - 1;
+            default:
+                return false;
+        }
     }
 
     private void randomMovement(Cell newCell) {

@@ -144,8 +144,8 @@ public class Board extends JPanel implements Observer {
 						} else {
 							// Cuerpo de la serpiente
 							g.setColor(snake.isSelected() ?
-									new Color(32, 178, 170) :
-									new Color(34, 139, 34));
+									new Color(032, 178, 170) :
+									new Color(034, 139, 34));
 						}
 						g.fillRect(cell.getX() * GridSize.WIDTH_BOX,
 								cell.getY() * GridSize.HEIGH_BOX,
