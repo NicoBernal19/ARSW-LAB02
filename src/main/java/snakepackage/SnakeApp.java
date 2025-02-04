@@ -51,10 +51,10 @@ public class SnakeApp {
 
     private void initializeFrame() {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        frame = new JFrame("La carrera de serpientes");
+        frame = new JFrame("The Snake Race");
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(GridSize.GRID_WIDTH * GridSize.WIDTH_BOX + 300,
+        frame.setSize(GridSize.GRID_WIDTH * GridSize.WIDTH_BOX + 350,
                 GridSize.GRID_HEIGHT * GridSize.HEIGH_BOX + 100);
         frame.setLocationRelativeTo(null);
         board = new Board();
