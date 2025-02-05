@@ -6,6 +6,7 @@
 #### Realizado por:
 
 - Juan Pablo Daza Pereira
+- Nicolas Bernal Fuquene
 
 ### Part I
 
